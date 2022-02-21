@@ -1,5 +1,5 @@
 # Code Snippets
-My personal code snippets for various languages ​​and technologies.
+My personal code snippets and reference data for various languages ​​and technologies.
 
 
 | File   | Description | 
