@@ -1,2 +1,2 @@
-# code-snippets
+# Code Snippets
 My personal code snippets for various languages ​​and technologies.
