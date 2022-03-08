@@ -7,7 +7,13 @@ AT+CSMINS?
 Return:
 ```
 +CSMINS: 0,1
+
+OK
 ```
+Result (second number):
+- 0 - SIM Card not inserted
+- 1 - SIM Card inserted
+
 
 ---
 ### Get SIM Card Access
@@ -17,6 +23,8 @@ AT+CPIN?
 Return :
 ```
 +CPIN: READY
+
+OK
 ```
 Result:
 
@@ -46,6 +54,8 @@ AT+CNUM
 Return:
 ```
 +CNUM: "","+0011222222222",145,0,4
+
+OK
 ```
 
 ---
@@ -56,11 +66,24 @@ AT+CIMI
 Return:
 ```
 123456789012345
+
 OK
 ```
-
+Result:
++CNUM: "String", "Number",Type,Speed,Service
+- String - Optional alphanumeric string associated with Number used character.
+- Number - Phone number (IMSI)
+- Speed - As defined by AT+CBST command
+- Service:
+  - 0 - Asynchronous modem
+  - 1 - Synchronous modem
+  - 2 - PAD Access (asynchronous)
+  - 3 - Packet Access (synchronous)
+  - 4 - Voice
+  - 5 - Fax
+  
 ---
-### Get SIM Card Prefered Operators
+### Get SIM Card Preferred Operators
 ```
 AT+CPOL?
 ```
@@ -72,30 +95,85 @@ Return:
 +CPOL: 4,2,"71606"
 +CPOL: 5,2,"732123"
 +CPOL: 6,2,"73402"
-+CPOL: 7,2,"74000"
-+CPOL: 8,2,"70403"
-+CPOL: 9,2,"70604"
-+CPOL: 10,2,"710300"
-+CPOL: 11,2,"714020"
-+CPOL: 12,2,"33403"
-+CPOL: 13,2,"26207"
-+CPOL: 14,2,"26208"
-+CPOL: 15,2,"23410"
-+CPOL: 16,2,"23106"
-+CPOL: 17,2,"23002"
-+CPOL: 18,2,"21407"
-+CPOL: 19,2,"27211"
-+CPOL: 20,2,"71204"
+...
+
 OK
+```
+Result:
++CPOL: Index,Format,Operator
+- Index - Order number of operator in SIM preferred operator list.
+- Format:
+  - 0 - Long format alphanumeric
+  - 1 - Short format alphanumeric
+  - 2 - Numeric
+- Operator Id
+
+---
+### Get Operator Names
+```
+AT+COPN
+```
+Return:
+```
++COPN: "20201","COSMOTE"
++COPN: "20205","vodafone"
++COPN: "20209","Q-TELECOM"
++COPN: "20210","TIM"
++COPN: "20404","vodafone"
+...
+
+OK
+```
+---
+
+### Get Operator
+Set long alphanumeric format
+```
+AT+COPS=3,0
+```
+Return:
+```
+OK
+```
+Command
+```
+AT+COPS?
+```
+Return:
+```
++COPS: 0,0,"Claro"
 ```
 
 ---
 ### Get SIM Card Operator
 ```
-AT+CNUM
+AT+CSPN?
 ```
 Return:
 ```
-+COPS: 0,0,"72411"
++CSPN: "Vivo",0
+
 OK
 ```
+---
+
+### Get Mobile Operation Band
+```
+AT+CBAND?
+```
+Return:
+```
++CBAND: GSM850_MODE,ALL_BAND
+
+OK
+```
+Result:
+- EGSM_MODE
+- PGSM_MODE
+- DCS_MODE
+- GSM850_MODE
+- PCS_MODE
+- EGSM_DCS_MODE 
+- GSM850_PCS_MODE
+- EGSM_PCS_MODE
+- ALL_BAND
